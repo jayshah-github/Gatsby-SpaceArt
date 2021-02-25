@@ -1,0 +1,23 @@
+[
+    {
+        "img":"../assets/images/s1.png",
+        "alt":"abc",
+        "name:":"Vaastu Consultation",
+        "button":"Book Now"
+    },
+    
+    {
+        "img":"../assets/images/s2.png",
+        "alt":"abc",
+        "name:":"Residential Consultation",
+        "button":"Book Now"
+    },
+    {
+        "img":"../assets/images/s3.png",
+        "alt":"abc",
+        "name:":"Commercial Consultation",
+        "button":"Book Now"
+    }
+    
+    
+]

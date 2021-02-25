@@ -1,0 +1,173 @@
+import React , { useState,useEffect }from "react"
+import { Link } from "gatsby"
+import styled from 'styled-components'
+import {FaBars} from 'react-icons/fa'
+import {menuData} from '../data/MenuData'
+import { Button } from "./Button"
+
+
+const NavBar = () => {
+  const [navbarOpen, setNavbarOpen] = useState(false)
+  function preventDefault(e){
+    e.preventDefault();
+}
+
+useEffect(() => {
+  if (navbarOpen) {
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = '15px';
+  }
+  return () => {
+    document.body.style.overflow = 'unset';
+    document.body.style.paddingRight = '0px';
+  };
+}, [navbarOpen]);
+
+  return(
+    <Nav>
+      <NavLinkLogo to="/" >SPACE ARTS</NavLinkLogo>
+      <Bars onClick={() => setNavbarOpen(!navbarOpen)} />
+       {navbarOpen ? (
+     
+        <Navbox>
+            {menuData.map((item,index)=>(
+            <NavLink  to={item.links} key={index} >{item.title}</NavLink>
+          ))}
+            {/* <NavBtn>
+        <Button primary="true" round="true" to="/trips" >Book a Flight</Button>
+      </NavBtn> */}
+        </Navbox>
+      ) : (
+        
+        <Navbox open>
+            <NavMenu>
+        {menuData.map((item,index)=>(
+            <NavLink  to={item.links} key={index} >{item.title}</NavLink>
+          ))}
+      </NavMenu>
+      <NavBtn>
+        <Button primary="true" round="true" to="/trips" >Book a Flight</Button>
+      </NavBtn>
+        </Navbox>
+      )}
+      
+    
+    </Nav>
+  )
+}
+
+export default NavBar
+const Navbox = styled.div`
+  display: flex;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    background: #101522;
+    justify-content: flex-start;
+  
+    transition: all 0.3s ease-in;
+    top: 80px;
+    left: ${props => (props.open ? "-100%" : "0")};
+  }
+`
+const Nav = styled.nav`
+
+height:80px;
+display:flex;
+justify-content:space-between;
+padding:0.5rem calc((100vw-1300px)/2);
+z-index:100;
+position:relative;
+
+
+`
+
+const NavLinkLogo= styled(Link)`
+color:#fff;
+display:flex;
+align-items:center;
+text-decoration:none;
+padding:0 1rem;
+height:100%;
+cursor: pointer;
+
+@media (max-width: 768px) {
+
+  color:#fff;
+display:flex;
+align-items:center;
+text-decoration:none;
+padding:0.5rem ;
+height:100%;
+
+  }
+
+
+`
+
+const NavLink= styled(Link)`
+color:#fff;
+display:flex;
+align-items:center;
+text-decoration:none;
+padding:0 1rem;
+height:100%;
+cursor: pointer;
+
+@media (max-width: 768px) {
+
+  color:#fff;
+display:flex;
+align-items:center;
+text-decoration:none;
+padding:0.5rem ;
+height:18%;
+
+  }
+
+
+`
+
+const Bars= styled(FaBars)`
+display:none;
+color:#fff;
+transform: ${props => (props.open ? "rotate(-45deg)" : "inherit")};
+
+
+@media screen and (max-width:768px){
+  display:block;
+  position:absolute;
+  top:0;
+  right:0;
+  transform: translate(-100%,75%);
+  font-size:1.8rem;
+  cursor: pointer;
+}
+
+`
+
+const NavMenu= styled.div`
+display:flex;
+align-items:center;
+margin-right:24px;
+@media screen and (max-width:768px){
+  display:none;
+}
+
+`
+
+const NavBtn= styled.div`
+display:flex;
+align-items:center;
+margin-right:24px;
+@media screen and (max-width:768px){
+  display:none;
+
+}
+
+`
