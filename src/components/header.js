@@ -2,6 +2,7 @@ import React , { useState,useEffect }from "react"
 import { Link } from "gatsby"
 import styled from 'styled-components'
 import {FaBars} from 'react-icons/fa'
+import {ImCross} from 'react-icons/im'
 import {menuData} from '../data/MenuData'
 import { Button } from "./Button"
 import {DiScala} from 'react-icons/di'
@@ -26,8 +27,9 @@ useEffect(() => {
       <NavLinkLogo to="/" ><SocialIcon/>SPACE ARTS</NavLinkLogo>
       <Bars onClick={() => setNavbarOpen(!navbarOpen)} />
        {navbarOpen ? (
-     
+         
         <Navbox>
+            <ImCross css={`color:"#fff";margin:1rem;`} onClick={() => setNavbarOpen(!navbarOpen)}/>
             {menuData.map((item,index)=>(
             <NavLink  to={item.links} key={index} >{item.title}</NavLink>
           ))}
@@ -75,7 +77,7 @@ const Navbox = styled.div`
     justify-content: flex-start;
   
     transition: all 0.3s ease-in;
-    top: 80px;
+    color:#fff;
     left: ${props => (props.open ? "-100%" : "0")};
   }
 `
@@ -90,6 +92,14 @@ margin:0 auto;
 position:relative;
 
 background: ${props => (props.bgChange ? "#101522" : "transparent")}; 
+
+@media (max-width: 768px) {
+
+
+padding:0 ;
+
+
+}
 `
 
 const NavLinkLogo= styled(Link)`
