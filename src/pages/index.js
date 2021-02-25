@@ -10,10 +10,11 @@ import Layout from "../components/layout"
 
 import SEO from "../components/seo"
 import Trips from "../components/Trips"
+import NewHeader from "../components/NewHeader"
 
 const IndexPage = () => (
   <Layout>
-      <Header  />
+      <NewHeader  />
     <SEO title="Home" />
     <Hero/>
     {/* <Trips heading="Serivces"/>
